@@ -6,7 +6,10 @@ import com.github.ashr123.option.Some;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 	public static void main(String... args) throws NoSuchAlgorithmException {
@@ -14,10 +17,10 @@ public class Main {
 		final Option<Integer> integerOption2 = instanceStrong.nextBoolean() ?
 				new Some<>(instanceStrong.nextInt()) :
 				new None<>();
-		System.out.println(switch (integerOption2) {
-			case Some(Integer o) -> o;
-			case None() -> "None";
-		});
+//		System.out.println(switch (integerOption2) {
+//			case Some(Integer o) -> o;
+//			case None() -> "None";
+//		});
 
 		final Option<Integer> integerOption1 = Option.newOption(instanceStrong.nextBoolean() ?
 				instanceStrong.nextInt() :
@@ -26,5 +29,16 @@ public class Main {
 		final Option<Integer> integerOption = Option.newOption(Optional.ofNullable(instanceStrong.nextBoolean() ?
 				instanceStrong.nextInt() :
 				null));
+
+		final List<Option<Integer>> any = Stream.generate(instanceStrong::nextInt)
+				.limit(100)
+				.map(integer -> instanceStrong.nextBoolean() ?
+						integer :
+						null)
+				.map(Option::newOption)
+				.map(Option::toOptional)
+				.map(Option::newOption)
+				.toList();
+		System.out.println(any);
 	}
 }

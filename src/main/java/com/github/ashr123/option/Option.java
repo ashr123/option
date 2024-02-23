@@ -16,10 +16,12 @@ public sealed interface Option<T> permits None, Some {
 				.orElseGet(None::new);
 	}
 
-	static <T> Optional<T> toOptional(Option<T> option) {
-		return switch (option) {
-			case Some(T value) -> Optional.of(value);
-			case None() -> Optional.empty();
-		};
-	}
+//	static <T> Optional<T> toOptional(Option<T> option) {
+//		return switch (option) {
+//			case Some(T value) -> Optional.of(value);
+//			case None() -> Optional.empty();
+//		};
+//	}
+
+	Optional<T> toOptional();
 }
