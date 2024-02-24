@@ -9,8 +9,8 @@ import io.github.ashr123.option.None;
 import io.github.ashr123.option.Option;
 import io.github.ashr123.option.Some;
 
-public static Integer intABSOption(Integer option) {
-	return switch (Option.newOption(option)) {
+public static Integer intABSOption(Integer integer) {
+	return switch (Option.newOption(integer)) {
 		case Some(Integer i) when i < 0 -> -i;
 		case Some(Integer i) -> i;
 		case None<Integer> ignored -> null;
