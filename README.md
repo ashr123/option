@@ -6,6 +6,8 @@ Gives you the possibility to write code as
 
 ```java
 import com.github.ashr123.option.None;
+import com.github.ashr123.option.Option;
+import com.github.ashr123.option.Some;
 
 public static Integer intABSOption(Integer option) {
 	return switch (Option.newOption(option)) {
