@@ -5,11 +5,14 @@ Small package that brings DOP of Optional to Java
 Gives you the possibility to write code as
 
 ```java
+import com.github.ashr123.option.None;
+
 public static Integer intABSOption(Integer option) {
 	return switch (Option.newOption(option)) {
 		case Some(Integer i) when i < 0 -> -i;
 		case Some(Integer i) -> i;
-		case None() -> null;
+		case None<Integer> ignored -> null;
+		case None() -> null; // effectively same as the case above
 	};
 }
 ```
