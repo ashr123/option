@@ -1,8 +1,4 @@
-package com.github.ashr123;
-
-import com.github.ashr123.option.None;
-import com.github.ashr123.option.Option;
-import com.github.ashr123.option.Some;
+package io.github.ashr123.option;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

@@ -1,4 +1,4 @@
-package com.github.ashr123.option;
+package io.github.ashr123.option;
 
 import java.util.Optional;
 import java.util.function.Function;
