@@ -11,12 +11,26 @@ import io.github.ashr123.option.None;
 import io.github.ashr123.option.Option;
 import io.github.ashr123.option.Some;
 
+public record Pair<L, R>(L left,
+						 R right) {
+}
+
 public static Integer intABSOption(Integer integer) {
 	return switch (Option.newOption(integer)) {
 		case Some(Integer i) when i < 0 -> -i;
 		case Some(Integer i) -> i;
 		case None<Integer> ignored -> null;
 		case None() -> null; // effectively same as the case above
+	};
+}
+
+public static Integer intMax(Pair<Integer, Integer> pair) {
+	return switch (Option.newOption(pair)) {
+		case Some(Pair(Integer l, Integer r)) when l != null && r == null -> l;
+		case Some(Pair(Integer l, Integer r)) when l == null && r != null -> r;
+		case Some(Pair(Integer l, Integer r)) when l != null && r != null && l > r -> l;
+		case Some(Pair(Integer l, Integer r)) -> r;
+		case None() -> null;
 	};
 }
 ```
