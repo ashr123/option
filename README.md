@@ -7,8 +7,8 @@ Gives you the possibility to write code as
 ```java
 public static Integer intABSOption(Integer option) {
 	return switch (Option.newOption(option)) {
-		case Some(Integer o) when o < 0 -> -o;
-		case Some(Integer o) -> o;
+		case Some(Integer i) when i < 0 -> -i;
+		case Some(Integer i) -> i;
 		case None() -> null;
 	};
 }
