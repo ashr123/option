@@ -16,8 +16,9 @@ public class Main {
 				new Some<>(instanceStrong.nextInt()) :
 				new None<>();
 		System.out.println(switch (integerOption2) {
+			case Some(Integer o) when o < 0 -> -o;
 			case Some(Integer o) -> o;
-			case None() -> "None";
+			case None() -> Integer.MAX_VALUE;
 		});
 
 		final Option<Integer> integerOption1 = Option.newOption(instanceStrong.nextBoolean() ?
