@@ -5,15 +5,11 @@ Small package that brings DOP of Optional to Java
 Gives you the possibility to write code as
 
 ```java
-public static void main(String[] args) {
-	final SecureRandom instanceStrong = SecureRandom.getInstanceStrong();
-	final Option<Integer> integerOption = instanceStrong.nextBoolean() ?
-			new Some<>(instanceStrong.nextInt()) :
-			new None<>();
-	System.out.println(switch (integerOption2) {
+public static Integer intABSOption(Integer option) {
+	return switch (Option.newOption(option)) {
 		case Some(Integer o) when o < 0 -> -o;
 		case Some(Integer o) -> o;
-		case None() -> Integer.MAX_VALUE;
-	});
+		case None() -> null;
+	};
 }
 ```
