@@ -30,7 +30,7 @@ public class Main {
 //				.map(Option::newOption)
 //				.toList());
 
-		System.out.println(intMax(new Pair<>(5, 4)));
+		System.out.println(intMax(new Pair<>(null, null)));
 	}
 
 	public record Pair<L, R>(L left,

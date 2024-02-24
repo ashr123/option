@@ -11,8 +11,7 @@ import io.github.ashr123.option.None;
 import io.github.ashr123.option.Option;
 import io.github.ashr123.option.Some;
 
-public record Pair<L, R>(L left,
-						 R right) {
+public record Pair<L, R>(L left, R right) {
 }
 
 public static Integer intABSOption(Integer integer) {
