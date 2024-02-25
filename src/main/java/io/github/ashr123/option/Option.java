@@ -2,6 +2,8 @@ package io.github.ashr123.option;
 
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused"})
 public sealed interface Option<T> permits None, Some {
@@ -16,12 +18,27 @@ public sealed interface Option<T> permits None, Some {
 				.orElseGet(None::new);
 	}
 
-//	static <T> Optional<T> toOptional(Option<T> option) {
-//		return switch (option) {
-//			case Some(T value) -> Optional.of(value);
-//			case None() -> Optional.empty();
-//		};
-//	}
+	Optional<T> optional();
 
-	Optional<T> toOptional();
+	/**
+	 * If a value is present, returns a sequential {@link Stream} containing
+	 * only that value, otherwise returns an empty {@code Stream}.
+	 * <br>
+	 * This method can be used to transform a {@code Stream} of optional
+	 * elements to a {@code Stream} of present value elements:
+	 * <pre>{@code
+	 *     Stream<Option<T>> os = ..
+	 *     Stream<T> s = os.flatMap(Option::stream)
+	 * }</pre>
+	 *
+	 * @return the optional value as a {@code Stream}
+	 * @since 1.0.5
+	 */
+	Stream<T> stream();
+
+	<U> Option<U> map(Function<? super T, ? extends U> mapper);
+
+	Option<T> filter(Predicate<? super T> predicate);
+
+	<U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper);
 }

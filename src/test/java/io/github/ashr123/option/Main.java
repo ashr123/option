@@ -26,6 +26,7 @@ public class Main {
 //				.map(Option::toOptional)
 //				.map(Option::newOption)
 //				.toList());
+		System.out.println(new None<>().equals(new None<>()));
 
 		System.out.println(intMax(new Pair<>(null, null)));
 	}
@@ -44,7 +45,8 @@ public class Main {
 	}
 
 	public static Integer intMax(Pair<Integer, Integer> pair) {
-		return switch (Option.of(pair)) {
+		final Option<Pair<Integer, Integer>> pairOption = Option.of(pair);
+		return switch (pairOption) {
 			case Some(Pair(Integer l, Integer r)) when l != null && r == null -> l;
 			case Some(Pair(Integer l, Integer r)) when l == null && r != null -> r;
 			case Some(Pair(Integer l, Integer r)) when l != null && r != null && l > r -> l;
