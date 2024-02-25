@@ -1,9 +1,6 @@
 package io.github.ashr123.option;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class Main {
 	public static void main(String... args) throws NoSuchAlgorithmException {
@@ -37,8 +34,17 @@ public class Main {
 							 R right) {
 	}
 
+	public static Integer intABSOption(Integer integer) {
+		return switch (Option.of(integer)) {
+			case Some(Integer i) when i < 0 -> -i;
+			case Some(Integer i) -> i;
+			case None() -> null; // effectively same as the case below
+			case None<Integer> ignored -> null;
+		};
+	}
+
 	public static Integer intMax(Pair<Integer, Integer> pair) {
-		return switch (Option.newOption(pair)) {
+		return switch (Option.of(pair)) {
 			case Some(Pair(Integer l, Integer r)) when l != null && r == null -> l;
 			case Some(Pair(Integer l, Integer r)) when l == null && r != null -> r;
 			case Some(Pair(Integer l, Integer r)) when l != null && r != null && l > r -> l;

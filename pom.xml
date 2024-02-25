@@ -6,7 +6,7 @@
 
 	<groupId>io.github.ashr123</groupId>
 	<artifactId>option</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<packaging>jar</packaging>
 
 	<name>Option</name>
@@ -15,7 +15,7 @@
 
 	<licenses>
 		<license>
-			<name>GNU AFFERO GENERAL PUBLIC LICENSE</name>
+			<name>GNU GENERAL PUBLIC LICENSE</name>
 			<url>${project.url}/blob/master/LICENSE</url>
 		</license>
 	</licenses>

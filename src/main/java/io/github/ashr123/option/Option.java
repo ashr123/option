@@ -5,13 +5,13 @@ import java.util.function.Function;
 
 @SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused"})
 public sealed interface Option<T> permits None, Some {
-	static <T> Option<T> newOption(T value) {
+	static <T> Option<T> of(T value) {
 		return value == null ?
 				new None<>() :
 				new Some<>(value);
 	}
 
-	static <T> Option<T> newOption(Optional<T> value) {
+	static <T> Option<T> of(Optional<T> value) {
 		return value.map((Function<T, Option<T>>) Some::new)
 				.orElseGet(None::new);
 	}

@@ -15,7 +15,7 @@ public record Pair<L, R>(L left, R right) {
 }
 
 public static Integer intABSOption(Integer integer) {
-	return switch (Option.newOption(integer)) {
+	return switch (Option.of(integer)) {
 		case Some(Integer i) when i < 0 -> -i;
 		case Some(Integer i) -> i;
 		case None<Integer> ignored -> null;
@@ -24,7 +24,7 @@ public static Integer intABSOption(Integer integer) {
 }
 
 public static Integer intMax(Pair<Integer, Integer> pair) {
-	return switch (Option.newOption(pair)) {
+	return switch (Option.of(pair)) {
 		case Some(Pair(Integer l, Integer r)) when l != null && r == null -> l;
 		case Some(Pair(Integer l, Integer r)) when l == null && r != null -> r;
 		case Some(Pair(Integer l, Integer r)) when l != null && r != null && l > r -> l;
