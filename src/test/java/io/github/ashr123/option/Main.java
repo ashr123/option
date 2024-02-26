@@ -1,6 +1,7 @@
 package io.github.ashr123.option;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.stream.Stream;
 
 public class Main {
 	public static void main(String... args) throws NoSuchAlgorithmException {
@@ -26,13 +27,21 @@ public class Main {
 //				.map(Option::toOptional)
 //				.map(Option::newOption)
 //				.toList());
+		if (Option.of(Stream.of(3, null, 4)
+				.findAny()) instanceof Some(Integer value) && value > 3) {
+			int newResult = value + 3;
+		}
+
+
+		final long count = Stream.of(3, null, 4)
+				.map(Option::of)
+				.flatMap(Option::stream)
+				.filter(value -> value > 3)
+				.count();
+
 		System.out.println(new None<>().equals(new None<>()));
 
 		System.out.println(intMax(new Pair<>(null, null)));
-	}
-
-	public record Pair<L, R>(L left,
-							 R right) {
 	}
 
 	public static Integer intABSOption(Integer integer) {
@@ -53,5 +62,9 @@ public class Main {
 			case Some(Pair(Integer l, Integer r)) -> r;
 			case None() -> null;
 		};
+	}
+
+	public record Pair<L, R>(L left,
+							 R right) {
 	}
 }

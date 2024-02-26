@@ -2,7 +2,6 @@ package io.github.ashr123.option;
 
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused"})
@@ -35,10 +34,6 @@ public sealed interface Option<T> permits None, Some {
 	 * @since 1.0.5
 	 */
 	Stream<T> stream();
-
-	<U> Option<U> map(Function<? super T, ? extends U> mapper);
-
-	Option<T> filter(Predicate<? super T> predicate);
 
 	<U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper);
 }
