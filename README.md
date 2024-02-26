@@ -36,15 +36,15 @@ public static Integer intMax(Pair<Integer, Integer> pair) {
 
 ## Comparison against existing `Optional<T>`
 
-| `Optional` methods                                                     | `Option<T> var` equivalent                                                    |
+| `Optional` methods                                                     | `Option<T> opt` equivalent                                                    |
 |------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `empty()`                                                              | `new None<>()`                                                                |
 | `of(T value)`                                                          | `new Some<>(T value)`                                                         |
 | `ofNullable(T value)`                                                  | <ul><li>`of(T value)`</li><li>`of(Optional<T> value)`</li></ul>               |
-| `get()`                                                                | <ul><li>switch-case</li><li>`if (var instanceof Some(T value)) ...`</li></ul> |
-| `isPresent()`                                                          | `if (var instanceof Some<?>) ...`                                             |
-| `isEmpty()`                                                            | `if (var instanceof None<?>) ...`                                             |
-| `ifPresent(Consumer<? super T> action)`                                | <ul><li>switch-case</li><li>`if (var instanceof Some(T value)) ...`</li></ul> |
+| `get()`                                                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) ...`</li></ul> |
+| `isPresent()`                                                          | `if (opt instanceof Some<?>) ...`                                             |
+| `isEmpty()`                                                            | `if (opt instanceof None<?>) ...`                                             |
+| `ifPresent(Consumer<? super T> action)`                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) ...`</li></ul> |
 | `ifPresentOrElse(Consumer<? super T> action, Runnable emptyAction)`    | switch-case                                                                   |
 | `filter(Predicate<? super T> predicate)`                               | `filter(Predicate<? super T> predicate)`                                      |
 | `map(Function<? super T, ? extends U> mapper)`                         | `map(Function<? super T, ? extends U> mapper)`                                |
