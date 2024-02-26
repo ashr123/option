@@ -36,24 +36,24 @@ public static Integer intMax(Pair<Integer, Integer> pair) {
 
 ## Comparison against existing `Optional<T>`
 
-| `Optional` methods                                                     | `Option<T> opt` equivalent                                                    |
-|------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `empty()`                                                              | `new None<>()`                                                                |
-| `of(T value)`                                                          | `new Some<>(T value)`                                                         |
-| `ofNullable(T value)`                                                  | <ul><li>`of(T value)`</li><li>`of(Optional<T> value)`</li></ul>               |
-| `get()`                                                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) ...`</li></ul> |
-| `isPresent()`                                                          | `if (opt instanceof Some<?>) ...`                                             |
-| `isEmpty()`                                                            | `if (opt instanceof None<?>) ...`                                             |
-| `ifPresent(Consumer<? super T> action)`                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) ...`</li></ul> |
-| `ifPresentOrElse(Consumer<? super T> action, Runnable emptyAction)`    | switch-case                                                                   |
-| `filter(Predicate<? super T> predicate)`                               | `if (opt instanceof Some(T value) && value ...)`                              |
-| `map(Function<? super T, ? extends U> mapper)`                         | `if (opt instanceof Some(T value)) value ...`                                 |
-| `flatMap(Function<? super T, ? extends Optional<? extends U>> mapper)` | `flatMap(Function<? super T, ? extends Option<? extends U>> mapper)`          |
-| `or(Supplier<? extends Optional<? extends T>> supplier)`               | switch-case                                                                   |
-| `stream()`                                                             | `stream()`                                                                    |
-| `orElse(T other)`                                                      | switch-case                                                                   |
-| `orElseGet(Supplier<? extends T> supplier)`                            | switch-case                                                                   |
-| `orElseThrow()`                                                        | switch-case                                                                   |
-| `orElseThrow(Supplier<? extends X> exceptionSupplier)`                 | switch-case                                                                   |
+| `Optional` methods                                                     | `Option<T> opt` equivalent                                                          |
+|------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `empty()`                                                              | `new None<>()`                                                                      |
+| `of(T value)`                                                          | `new Some<>(T value)`                                                               |
+| `ofNullable(T value)`                                                  | <ul><li>`of(T value)`</li><li>`of(Optional<T> value)`</li></ul>                     |
+| `get()`                                                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) ...`</li></ul>       |
+| `isPresent()`                                                          | `if (opt instanceof Some<?>) ...`                                                   |
+| `isEmpty()`                                                            | `if (opt instanceof None<?>) ...`                                                   |
+| `ifPresent(Consumer<? super T> action)`                                | <ul><li>switch-case</li><li>`if (opt instanceof Some(T value)) value ...`</li></ul> |
+| `ifPresentOrElse(Consumer<? super T> action, Runnable emptyAction)`    | switch-case                                                                         |
+| `filter(Predicate<? super T> predicate)`                               | `if (opt instanceof Some(T value) && value ...)`                                    |
+| `map(Function<? super T, ? extends U> mapper)`                         | `if (opt instanceof Some(T value)) value ...`                                       |
+| `flatMap(Function<? super T, ? extends Optional<? extends U>> mapper)` | `flatMap(Function<? super T, ? extends Option<? extends U>> mapper)`                |
+| `or(Supplier<? extends Optional<? extends T>> supplier)`               | switch-case                                                                         |
+| `stream()`                                                             | `stream()`                                                                          |
+| `orElse(T other)`                                                      | switch-case                                                                         |
+| `orElseGet(Supplier<? extends T> supplier)`                            | switch-case                                                                         |
+| `orElseThrow()`                                                        | switch-case                                                                         |
+| `orElseThrow(Supplier<? extends X> exceptionSupplier)`                 | switch-case                                                                         |
 
 Requires JRE 21 or above.
