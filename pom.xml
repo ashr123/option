@@ -6,7 +6,7 @@
 
 	<groupId>io.github.ashr123</groupId>
 	<artifactId>option</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<packaging>jar</packaging>
 
 	<name>Option</name>
@@ -41,22 +41,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<!--		<repository>-->
-		<!--			<id>github</id>-->
-		<!--			<name>GitHub Packages</name>-->
-		<!--			<url>https://maven.pkg.github.com/ashr123/time-measurement</url>-->
-		<!--		</repository>-->
-	</distributionManagement>
 
 	<build>
 		<plugins>
@@ -107,6 +91,16 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.4.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<tokenAuth>true</tokenAuth>
+					<autoPublish>true</autoPublish>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
