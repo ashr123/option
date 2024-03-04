@@ -16,7 +16,7 @@
 	<licenses>
 		<license>
 			<name>GNU GENERAL PUBLIC LICENSE</name>
-			<url>${project.url}/blob/master/LICENSE</url>
+			<url>${project.url}/blob/master/LICENSE.md</url>
 		</license>
 	</licenses>
 
