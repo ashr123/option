@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-@SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused"})
+@SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused", "ClassNamePrefixedWithPackageName"})
 public sealed interface Option<T> permits None, Some {
 	Option<?> NONE = new None<>();
 
@@ -40,4 +40,6 @@ public sealed interface Option<T> permits None, Some {
 	Stream<T> stream();
 
 	<U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper);
+
+	<U> Option<U> map(Function<? super T, ? extends U> mapper);
 }

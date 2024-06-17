@@ -16,10 +16,17 @@ public record None<T>() implements Option<T> {
 		return Stream.empty();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public <U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
 		Objects.requireNonNull(mapper);
+		//noinspection unchecked
 		return (Option<? extends U>) this;
+	}
+
+	@Override
+	public <U> Option<U> map(Function<? super T, ? extends U> mapper) {
+		Objects.requireNonNull(mapper);
+		//noinspection unchecked
+		return (Option<U>) this;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.OptionalDouble;
 import java.util.function.DoubleFunction;
 import java.util.stream.DoubleStream;
 
+@SuppressWarnings({"ClassNamePrefixedWithPackageName", "unused"})
 public sealed interface OptionDouble permits NoneDouble, SomeDouble {
 	OptionDouble NONE = new NoneDouble();
 

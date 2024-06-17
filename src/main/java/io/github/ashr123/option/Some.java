@@ -25,4 +25,9 @@ public record Some<T>(T value) implements Option<T> {
 	public <U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
 		return Objects.requireNonNull(mapper.apply(value));
 	}
+
+	@Override
+	public <U> Option<U> map(Function<? super T, ? extends U> mapper) {
+		return Option.of(mapper.apply(value));
+	}
 }

@@ -4,6 +4,7 @@ import java.util.OptionalLong;
 import java.util.function.LongFunction;
 import java.util.stream.LongStream;
 
+@SuppressWarnings({"ClassNamePrefixedWithPackageName", "unused"})
 public sealed interface OptionLong permits NoneLong, SomeLong {
 	OptionLong NONE = new NoneLong();
 

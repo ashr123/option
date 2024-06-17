@@ -4,6 +4,7 @@ import java.util.OptionalInt;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 
+@SuppressWarnings({"ClassNamePrefixedWithPackageName", "unused"})
 public sealed interface OptionInt permits NoneInt, SomeInt {
 	OptionInt NONE = new NoneInt();
 
