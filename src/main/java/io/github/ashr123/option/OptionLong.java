@@ -5,18 +5,16 @@ import java.util.function.LongFunction;
 import java.util.stream.LongStream;
 
 public sealed interface OptionLong permits NoneLong, SomeLong {
-	OptionLong NONE = new NoneLong();
-
 	static OptionLong of(Long value) {
 		return value == null ?
-				NONE :
+				NoneLong.INSTANCE :
 				new SomeLong(value);
 	}
 
 	static OptionLong of(@SuppressWarnings("OptionalUsedAsFieldOrParameterType") OptionalLong value) {
 		return value.isPresent() ?
 				new SomeLong(value.getAsLong()) :
-				NONE;
+				NoneLong.INSTANCE;
 	}
 
 	OptionalLong optionalLong();

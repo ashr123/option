@@ -6,20 +6,18 @@ import java.util.stream.Stream;
 
 @SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "unused"})
 public sealed interface Option<T> permits None, Some {
-	Option<?> NONE = new None<>();
-
 	static <T> Option<T> of(T value) {
-		//noinspection unchecked
 		return value == null ?
-				(Option<T>) NONE :
+				None.instance() :
 				new Some<>(value);
 	}
 
 	static <T> Option<T> of(Optional<T> value) {
-		//noinspection unchecked
 		return value.map((Function<T, Option<T>>) Some::new)
-				.orElse((Option<T>) NONE);
+				.orElse(None.instance());
 	}
+
+	<U> Option<U> map(Function<? super T, ? extends U> mapper);
 
 	Optional<T> optional();
 

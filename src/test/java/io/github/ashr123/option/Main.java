@@ -1,10 +1,12 @@
 package io.github.ashr123.option;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Main {
 	public static void main(String... args) throws NoSuchAlgorithmException {
+		System.out.println(None.instance().hashCode());
 //		final SecureRandom instanceStrong = SecureRandom.getInstanceStrong();
 //		final Option<Integer> integerOption2 = instanceStrong.nextBoolean() ?
 //				new Some<>(instanceStrong.nextInt()) :
@@ -32,23 +34,22 @@ public class Main {
 			int newResult = value + 3;
 		}
 
-
 		final long count = Stream.of(3, null, 4)
 				.map(Option::of)
 				.flatMap(Option::stream)
 				.filter(value -> value > 3)
 				.count();
 
-		System.out.println(new None<>().equals(new None<>()));
-
 		System.out.println(intMax(new Pair<>(null, null)));
+
+		System.out.println(Objects.hash());
+		System.out.println(new EmptyRecord().hashCode());
 	}
 
 	public static Integer intABSOption(Integer integer) {
 		return switch (Option.of(integer)) {
 			case Some(Integer i) when i < 0 -> -i;
 			case Some(Integer i) -> i;
-			case None() -> null; // effectively same as the case below
 			case None<Integer> ignored -> null;
 		};
 	}
@@ -60,11 +61,14 @@ public class Main {
 			case Some(Pair(Integer l, Integer r)) when l == null && r != null -> r;
 			case Some(Pair(Integer l, Integer r)) when l != null && r != null && l > r -> l;
 			case Some(Pair(Integer l, Integer r)) -> r;
-			case None() -> null;
+			case None<Pair<Integer, Integer>> ignored -> null;
 		};
 	}
 
 	public record Pair<L, R>(L left,
 							 R right) {
+	}
+
+	private record EmptyRecord() {
 	}
 }

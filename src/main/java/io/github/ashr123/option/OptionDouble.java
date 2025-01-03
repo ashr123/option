@@ -5,18 +5,16 @@ import java.util.function.DoubleFunction;
 import java.util.stream.DoubleStream;
 
 public sealed interface OptionDouble permits NoneDouble, SomeDouble {
-	OptionDouble NONE = new NoneDouble();
-
 	static OptionDouble of(Double value) {
 		return value == null ?
-				NONE :
+				NoneDouble.INSTANCE :
 				new SomeDouble(value);
 	}
 
 	static OptionDouble of(@SuppressWarnings("OptionalUsedAsFieldOrParameterType") OptionalDouble value) {
 		return value.isPresent() ?
 				new SomeDouble(value.getAsDouble()) :
-				NONE;
+				NoneDouble.INSTANCE;
 	}
 
 	OptionalDouble optionalDouble();

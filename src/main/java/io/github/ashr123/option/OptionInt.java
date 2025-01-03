@@ -5,18 +5,16 @@ import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 
 public sealed interface OptionInt permits NoneInt, SomeInt {
-	OptionInt NONE = new NoneInt();
-
 	static OptionInt of(Integer value) {
 		return value == null ?
-				NONE :
+				NoneInt.INSTANCE :
 				new SomeInt(value);
 	}
 
 	static OptionInt of(@SuppressWarnings("OptionalUsedAsFieldOrParameterType") OptionalInt value) {
 		return value.isPresent() ?
 				new SomeInt(value.getAsInt()) :
-				NONE;
+				NoneInt.INSTANCE;
 	}
 
 	OptionalInt optionalInt();

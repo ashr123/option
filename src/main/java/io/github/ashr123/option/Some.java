@@ -12,6 +12,11 @@ public record Some<T>(T value) implements Option<T> {
 	}
 
 	@Override
+	public <U> Option<U> map(Function<? super T, ? extends U> mapper) {
+		return Option.of(Objects.requireNonNull(mapper).apply(value));
+	}
+
+	@Override
 	public Optional<T> optional() {
 		return Optional.of(value);
 	}

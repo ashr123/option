@@ -6,7 +6,7 @@
 
 	<groupId>io.github.ashr123</groupId>
 	<artifactId>option</artifactId>
-	<version>1.1.0</version>
+	<version>1.2.0</version>
 	<packaging>jar</packaging>
 
 	<name>Option</name>
@@ -15,7 +15,7 @@
 
 	<licenses>
 		<license>
-			<name>GNU GENERAL PUBLIC LICENSE</name>
+			<name>MIT LICENCE</name>
 			<url>${project.url}/blob/master/LICENSE.md</url>
 		</license>
 	</licenses>
@@ -98,7 +98,6 @@
 				<version>0.6.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<tokenAuth>true</tokenAuth>
 					<autoPublish>true</autoPublish>
 				</configuration>
 			</plugin>
