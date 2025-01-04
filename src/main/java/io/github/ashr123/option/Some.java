@@ -13,7 +13,7 @@ public record Some<T>(T value) implements Option<T> {
 
 	@Override
 	public <U> Option<U> map(Function<? super T, ? extends U> mapper) {
-		return Option.of(Objects.requireNonNull(mapper).apply(value));
+		return Option.of(mapper.apply(value));
 	}
 
 	@Override
