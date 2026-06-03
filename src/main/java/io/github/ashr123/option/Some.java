@@ -26,8 +26,9 @@ public record Some<T>(T value) implements Option<T> {
 		return Stream.of(value);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public <U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
-		return Objects.requireNonNull(mapper.apply(value));
+	public <U> Option<U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
+		return (Option<U>) Objects.requireNonNull(mapper.apply(value));
 	}
 }

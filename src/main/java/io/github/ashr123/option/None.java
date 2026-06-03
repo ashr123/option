@@ -37,9 +37,9 @@ public final class None<T> implements Option<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
+	public <U> Option<U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper) {
 		Objects.requireNonNull(mapper);
-		return (Option<? extends U>) this;
+		return (Option<U>) this;
 	}
 
 	@Override

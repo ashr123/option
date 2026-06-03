@@ -37,5 +37,5 @@ public sealed interface Option<T> permits None, Some {
 	 */
 	Stream<T> stream();
 
-	<U> Option<? extends U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper);
+	<U> Option<U> flatMap(Function<? super T, ? extends Option<? extends U>> mapper);
 }
