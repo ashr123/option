@@ -45,8 +45,8 @@ class OptionTest {
 	void optionalAndStreamExposeContainedOrEmptyValues() {
 		Assertions.assertEquals(Optional.of("abc"), new Some<>("abc").optional());
 		Assertions.assertEquals(List.of("abc"), new Some<>("abc").stream().toList());
-		Assertions.assertEquals(Optional.empty(), None.<String>instance().optional());
-		Assertions.assertTrue(None.<String>instance().stream().toList().isEmpty());
+		Assertions.assertEquals(Optional.empty(), None.instance().optional());
+		Assertions.assertTrue(None.instance().stream().toList().isEmpty());
 	}
 
 	@Test
@@ -105,7 +105,7 @@ class OptionTest {
 		Assertions.assertSame(
 				None.instance(),
 				new Some<>("abc")
-						.flatMap(value -> None.<Integer>instance())
+						.flatMap(value -> None.instance())
 		);
 	}
 
