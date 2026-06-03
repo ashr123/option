@@ -14,9 +14,9 @@ class OptionTest {
 		Assertions.assertEquals(
 				"null isn't allowed, use None",
 				Assertions.assertThrows(
-						IllegalStateException.class,
-						() -> new Some<>(null)
-				)
+								IllegalStateException.class,
+								() -> new Some<>(null)
+						)
 						.getMessage()
 		);
 	}
