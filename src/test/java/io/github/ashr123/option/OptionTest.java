@@ -71,13 +71,15 @@ class OptionTest {
 	@Test
 	void mapDoesNotInvokeMapperForNone() {
 		final AtomicBoolean called = new AtomicBoolean();
-		final Option<Integer> noneMapped = None.<String>instance()
-				.map(value -> {
-					called.set(true);
-					return value.length();
-				});
 
-		Assertions.assertSame(None.instance(), noneMapped);
+		Assertions.assertSame(
+				None.instance(),
+				None.<String>instance()
+						.map(value -> {
+							called.set(true);
+							return value.length();
+						})
+		);
 		Assertions.assertFalse(called.get());
 	}
 
@@ -91,7 +93,6 @@ class OptionTest {
 
 	@Test
 	void flatMapSupportsTypedAssignmentsForSome() {
-
 		Assertions.assertEquals(
 				new Some<>(4),
 				//widened flatMap
