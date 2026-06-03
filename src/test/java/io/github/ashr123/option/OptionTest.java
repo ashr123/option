@@ -26,7 +26,7 @@ class OptionTest {
 		Assertions.assertEquals(new Some<>("abc"), Option.of("abc"));
 		Assertions.assertSame(None.instance(), Option.of((String) null));
 		Assertions.assertEquals(new Some<>("abc"), Option.of(Optional.of("abc")));
-		Assertions.assertSame(None.instance(), Option.of(Optional.<String>empty()));
+		Assertions.assertSame(None.instance(), Option.of(Optional.empty()));
 		Assertions.assertThrows(NullPointerException.class, () -> Option.of((Optional<String>) null));
 	}
 
@@ -64,7 +64,7 @@ class OptionTest {
 		Assertions.assertSame(
 				None.instance(),
 				new Some<>("abc")
-						.<Integer>map(value -> null)
+						.map(value -> null)
 		);
 	}
 
