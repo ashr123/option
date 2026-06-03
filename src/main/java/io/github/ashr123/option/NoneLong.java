@@ -5,13 +5,8 @@ import java.util.OptionalLong;
 import java.util.function.LongFunction;
 import java.util.stream.LongStream;
 
-public final class NoneLong implements OptionLong {
-	public static final NoneLong INSTANCE = new NoneLong();
-
-	private NoneLong() {
-		if (INSTANCE != null)
-			throw new IllegalStateException("Already instantiated");
-	}
+public enum NoneLong implements OptionLong {
+	INSTANCE;
 
 	@Override
 	public OptionalLong optionalLong() {
@@ -27,16 +22,6 @@ public final class NoneLong implements OptionLong {
 	public OptionLong flatMap(LongFunction<? extends OptionLong> mapper) {
 		Objects.requireNonNull(mapper);
 		return this;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return obj instanceof NoneLong;
-	}
-
-	@Override
-	public int hashCode() {
-		return 0;
 	}
 
 	@Override

@@ -5,13 +5,8 @@ import java.util.OptionalDouble;
 import java.util.function.DoubleFunction;
 import java.util.stream.DoubleStream;
 
-public final class NoneDouble implements OptionDouble {
-	public static final NoneDouble INSTANCE = new NoneDouble();
-
-	private NoneDouble() {
-		if (INSTANCE != null)
-			throw new IllegalStateException("Already instantiated");
-	}
+public enum NoneDouble implements OptionDouble {
+	INSTANCE;
 
 	@Override
 	public OptionalDouble optionalDouble() {
@@ -27,16 +22,6 @@ public final class NoneDouble implements OptionDouble {
 	public OptionDouble flatMap(DoubleFunction<? extends OptionDouble> mapper) {
 		Objects.requireNonNull(mapper);
 		return this;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return obj instanceof NoneDouble;
-	}
-
-	@Override
-	public int hashCode() {
-		return 0;
 	}
 
 	@Override
