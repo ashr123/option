@@ -1,5 +1,6 @@
 package io.github.ashr123.option;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -7,14 +8,12 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class OptionTest {
 	@Test
 	void someRejectsNullValues() {
-		assertEquals(
+		Assertions.assertEquals(
 				"null isn't allowed, use None",
-				assertThrows(
+				Assertions.assertThrows(
 						IllegalStateException.class,
 						() -> new Some<>(null)
 				)
@@ -24,11 +23,11 @@ class OptionTest {
 
 	@Test
 	void factoriesCreateExpectedVariantsFromNullableValuesAndOptional() {
-		assertEquals(new Some<>("abc"), Option.of("abc"));
-		assertSame(None.instance(), Option.of((String) null));
-		assertEquals(new Some<>("abc"), Option.of(Optional.of("abc")));
-		assertSame(None.instance(), Option.of(Optional.<String>empty()));
-		assertThrows(NullPointerException.class, () -> Option.of((Optional<String>) null));
+		Assertions.assertEquals(new Some<>("abc"), Option.of("abc"));
+		Assertions.assertSame(None.instance(), Option.of((String) null));
+		Assertions.assertEquals(new Some<>("abc"), Option.of(Optional.of("abc")));
+		Assertions.assertSame(None.instance(), Option.of(Optional.<String>empty()));
+		Assertions.assertThrows(NullPointerException.class, () -> Option.of((Optional<String>) null));
 	}
 
 	@Test
@@ -36,23 +35,23 @@ class OptionTest {
 		final None<?> first = None.instance();
 		final None<?> second = None.instance();
 
-		assertSame(first, second);
-		assertEquals(first, second);
-		assertEquals(0, first.hashCode());
-		assertEquals("None[]", first.toString());
+		Assertions.assertSame(first, second);
+		Assertions.assertEquals(first, second);
+		Assertions.assertEquals(0, first.hashCode());
+		Assertions.assertEquals("None[]", first.toString());
 	}
 
 	@Test
 	void optionalAndStreamExposeContainedOrEmptyValues() {
-		assertEquals(Optional.of("abc"), new Some<>("abc").optional());
-		assertEquals(List.of("abc"), new Some<>("abc").stream().toList());
-		assertEquals(Optional.empty(), None.<String>instance().optional());
-		assertTrue(None.<String>instance().stream().toList().isEmpty());
+		Assertions.assertEquals(Optional.of("abc"), new Some<>("abc").optional());
+		Assertions.assertEquals(List.of("abc"), new Some<>("abc").stream().toList());
+		Assertions.assertEquals(Optional.empty(), None.<String>instance().optional());
+		Assertions.assertTrue(None.<String>instance().stream().toList().isEmpty());
 	}
 
 	@Test
 	void mapSupportsWidenedAssignments() {
-		assertEquals(
+		Assertions.assertEquals(
 				new Some<>(3),
 				//widened map
 				new Some<>("abc")
@@ -62,7 +61,7 @@ class OptionTest {
 
 	@Test
 	void mapConvertsNullMapperResultsToNone() {
-		assertSame(
+		Assertions.assertSame(
 				None.instance(),
 				new Some<>("abc")
 						.<Integer>map(value -> null)
@@ -78,22 +77,22 @@ class OptionTest {
 					return value.length();
 				});
 
-		assertSame(None.instance(), noneMapped);
-		assertFalse(called.get());
+		Assertions.assertSame(None.instance(), noneMapped);
+		Assertions.assertFalse(called.get());
 	}
 
 	@Test
 	void mapRejectsNullMappers() {
 		final Function<String, Integer> nullMapper = null;
 
-		assertThrows(NullPointerException.class, () -> new Some<>("abc").map(nullMapper));
-		assertThrows(NullPointerException.class, () -> None.<String>instance().map(nullMapper));
+		Assertions.assertThrows(NullPointerException.class, () -> new Some<>("abc").map(nullMapper));
+		Assertions.assertThrows(NullPointerException.class, () -> None.<String>instance().map(nullMapper));
 	}
 
 	@Test
 	void flatMapSupportsTypedAssignmentsForSome() {
 
-		assertEquals(
+		Assertions.assertEquals(
 				new Some<>(4),
 				//widened flatMap
 				new Some<>("abcd")
@@ -103,7 +102,7 @@ class OptionTest {
 
 	@Test
 	void flatMapCanReturnNoneForSome() {
-		assertSame(
+		Assertions.assertSame(
 				None.instance(),
 				new Some<>("abc")
 						.flatMap(value -> None.<Integer>instance())
@@ -114,7 +113,7 @@ class OptionTest {
 	void flatMapDoesNotInvokeMapperForNone() {
 		final AtomicBoolean called = new AtomicBoolean();
 
-		assertSame(
+		Assertions.assertSame(
 				None.instance(),
 				None.<String>instance()
 						.flatMap(value -> {
@@ -122,15 +121,15 @@ class OptionTest {
 							return new Some<>(value.length());
 						})
 		);
-		assertFalse(called.get());
+		Assertions.assertFalse(called.get());
 	}
 
 	@Test
 	void flatMapRejectsNullMapperAndNullMapperResults() {
 		final Function<String, Option<Integer>> nullMapper = null;
 
-		assertThrows(NullPointerException.class, () -> new Some<>("abc").flatMap(nullMapper));
-		assertThrows(NullPointerException.class, () -> None.<String>instance().flatMap(nullMapper));
-		assertThrows(NullPointerException.class, () -> new Some<>("abc").flatMap(value -> null));
+		Assertions.assertThrows(NullPointerException.class, () -> new Some<>("abc").flatMap(nullMapper));
+		Assertions.assertThrows(NullPointerException.class, () -> None.<String>instance().flatMap(nullMapper));
+		Assertions.assertThrows(NullPointerException.class, () -> new Some<>("abc").flatMap(value -> null));
 	}
 }
